@@ -1,0 +1,27 @@
+.DS_Store
+graph.html
+.env
+*.db
+*.db-*
+*.log
+__pycache__/
+env/
+venv/
+.vscode/*
+data-build/
+models/
+results/
+coverage-report/
+.coverage
+coverage.xml
+pytest.xml
+story_blocks_connections.html
+tmp*.py
+tfhub_modules/*
+conveRT/*
+!conveRT/install.sh
+!conveRT/readme.md
+
+# Include VS Code Debugger
+!.vscode/launch.json
+.history
