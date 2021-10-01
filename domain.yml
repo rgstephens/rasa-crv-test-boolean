@@ -1,0 +1,192 @@
+version: "2.0"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - crv_works
+  - boolean_only
+
+entities:
+  - agent_queue_open
+  - residence_status
+  - phone_number_type
+
+slots:
+  agent_queue_open:
+    auto_fill: true
+    influence_conversation: false
+    type: bool
+  residence_status:
+    auto_fill: true
+    influence_conversation: true
+    type: categorical
+    values: 
+      - resident
+      - student
+      - worker
+  phone_number_type:
+    auto_fill: true
+    influence_conversation: false
+    type: categorical
+    values: 
+      - mobile
+      - other
+
+responses:
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_cheer_up:
+  - text: "Here is something to cheer you up:"
+    image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+  - text: "Did that help you?"
+
+  utter_happy:
+  - text: "Great, carry on!"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_payment_enquiry:
+    - condition:
+        - type: slot
+          name: residence_status
+          value: "resident"
+        - type: slot
+          name: phone_number_type
+          value: "mobile"
+        - type: slot
+          name: agent_queue_open
+          value: true
+      text: Okay. You can make a payment, change your payment details, check when your next payment is due, or change your payment frequency in the  mobile app.
+    - condition:
+        - type: slot
+          name: residence_status
+          value: "student"
+        - type: slot
+          name: phone_number_type
+          value: "mobile"
+        - type: slot
+          name: agent_queue_open
+          value: true
+      text: Your Overseas Student Health Cover is usually paid up front in full. You can check or edit your payment details in the  mobile app.
+    - condition:
+        - type: slot
+          name: residence_status
+          value: "worker"
+        - type: slot
+          name: phone_number_type
+          value: "mobile"
+        - type: slot
+          name: agent_queue_open
+          value: true
+      text: Okay. You can make a payment, change your payment details, check when your next payment is due, or change your payment frequency in the  mobile app.
+    - condition:
+        - type: slot
+          name: residence_status
+          value: "resident"
+        - type: slot
+          name: phone_number_type
+          value: "mobile"
+        - type: slot
+          name: agent_queue_open
+          value: false
+      text: Okay. My teammates are not at work right now, but you can make a payment, change your payment details, check when your next payment is due, or change your payment frequency in the  mobile app.
+    - condition:
+        - type: slot
+          name: residence_status
+          value: "student"
+        - type: slot
+          name: phone_number_type
+          value: "mobile"
+        - type: slot
+          name: agent_queue_open
+          value: false
+      text: Your Overseas Student Health Cover is usually paid up front in full. My teammates are not at work right now, but you can check or edit your payment details in the  mobile app.
+    - condition:
+        - type: slot
+          name: residence_status
+          value: "worker"
+        - type: slot
+          name: phone_number_type
+          value: "mobile"
+        - type: slot
+          name: agent_queue_open
+          value: false
+      text: Okay. My teammates are not at work right now, but you can make a payment, change your payment details, check when your next payment is due, or change your payment frequency in the  mobile app.
+    - condition:
+        - type: slot
+          name: phone_number_type
+          value: "other"
+        - type: slot
+          name: agent_queue_open
+          value: true
+      text: Okay. You can make a payment, change your payment details, check when your next payment is due, or change your payment frequency in your member account. You can log in to your account via the  website or the  mobile App.
+    - condition:
+        - type: slot
+          name: phone_number_type
+          value: "other"
+        - type: slot
+          name: agent_queue_open
+          value: false
+      text: Okay. My teammates are not at work right now, but you can make a payment, change your payment details, check when your next payment is due, or change your payment frequency in your member account. You can log in to your account via the  website or the  mobile App.
+    - text: This is the default response
+
+  utter_payment_enquiry2:
+    - condition:
+        - type: slot
+          name: residence_status
+          value: "resident"
+        - type: slot
+          name: phone_number_type
+          value: "mobile"
+      text: Okay. You can make a payment, change your payment details, check when your next payment is due, or change your payment frequency in the  mobile app.
+    - condition:
+        - type: slot
+          name: residence_status
+          value: "student"
+        - type: slot
+          name: phone_number_type
+          value: "mobile"
+      text: Your Overseas Student Health Cover is usually paid up front in full. You can check or edit your payment details in the  mobile app.
+    - condition:
+        - type: slot
+          name: residence_status
+          value: "worker"
+        - type: slot
+          name: phone_number_type
+          value: "mobile"
+      text: Okay. You can make a payment, change your payment details, check when your next payment is due, or change your payment frequency in the  mobile app.
+    - condition:
+        - type: slot
+          name: phone_number_type
+          value: "other"
+      text: Okay. You can make a payment, change your payment details, check when your next payment is due, or change your payment frequency in your member account. You can log in to your account via the  website or the  mobile App.
+    - text: This is the default response
+
+  utter_boolean:
+    - condition:
+        - type: slot
+          name: agent_queue_open
+          value: true
+      text: Boolean value is true
+    - condition:
+        - type: slot
+          name: agent_queue_open
+          value: false
+      text: Boolean value is false
+    - text: This is the default response
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

@@ -1,0 +1,23 @@
+version: "2.0"
+
+rules:
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: crv with boolean
+  steps:
+  - intent: bot_challenge
+  - action: utter_payment_enquiry
+
+- rule: crv without boolean
+  steps:
+  - intent: crv_works
+  - action: utter_payment_enquiry2
+
+- rule: simple boolean
+  steps:
+  - intent: boolean_only
+  - action: utter_boolean
