@@ -21,3 +21,9 @@ rules:
   steps:
   - intent: boolean_only
   - action: utter_boolean
+
+- rule: boolean set in action
+  steps:
+  - intent: boolean_action
+  - action: action_set_boolean
+  - action: utter_boolean

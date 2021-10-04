@@ -104,3 +104,10 @@ nlu:
     - do booleans work
     - why are booleans causing problems
     - please get booleans working
+
+- intent: boolean_action
+  examples: |
+    - boolean action test
+    - action that sets boolean
+    - call an action to set boolean
+    - boolean action example

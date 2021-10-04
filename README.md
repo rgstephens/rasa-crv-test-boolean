@@ -7,6 +7,8 @@ Test intents:
 /boolean_only{"agent_queue_open":"true"}
 /boolean_only{"agent_queue_open":"false"}
 
+/boolean_action
+
 /bot_challenge
 /bot_challenge{"residence_status":"resident","phone_number_type":"mobile","agent_queue_open":"True"}
 /bot_challenge{"residence_status":"resident","phone_number_type":"mobile","agent_queue_open":"true"}

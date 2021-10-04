@@ -10,6 +10,10 @@ intents:
   - bot_challenge
   - crv_works
   - boolean_only
+  - boolean_action
+
+actions:
+  - action_set_boolean
 
 entities:
   - agent_queue_open
@@ -179,13 +183,13 @@ responses:
         - type: slot
           name: agent_queue_open
           value: true
-      text: Boolean value is true
+      text: Boolean value should be true, actually is {agent_queue_open}
     - condition:
         - type: slot
           name: agent_queue_open
           value: false
-      text: Boolean value is false
-    - text: This is the default response
+      text: Boolean value should be false, actually is {agent_queue_open}
+    - text: This is the default response, actually is {agent_queue_open}
 
 session_config:
   session_expiration_time: 60
